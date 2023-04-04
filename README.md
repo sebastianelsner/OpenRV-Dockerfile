@@ -16,12 +16,20 @@ Build the image from the `OpenRV-Dockerfile` directory:
 ```
 docker build -t openrv .
 ```
+
+If your build runs really slow, try:
+
+```
+docker build  --ulimit nofile=1024000:1024000 -t openrv .
+```
+see: https://github.com/docker/buildx/issues/379 for explanation.
+
 You may have to use sudo, depending on your configuration.
 
 ## 5. Run the docker openrv image
 Run the docker image and mount a volume to point the `OpenRV-Dockerfile` directory (within qt5.15.2 installation)
 ```
-docker run -ti -v /OpenRV-Dockerfile:/rv
+docker run -ti -v /OpenRV-Dockerfile:/rv openrv
 ```
 
 ## 6. Cmake config in the image terminal
